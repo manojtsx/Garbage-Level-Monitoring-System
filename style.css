@@ -11,7 +11,7 @@ body {
 }
 header{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     gap: 10px;
     background-color: rgb(244, 240, 240);
 }
@@ -109,10 +109,17 @@ h1 {
 /* About Carousel */
 .stepper-container {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 10px auto;
   }
   
   .image-label {
+    font-size: 1.5rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .image-desc {
     height: 50px;
     display: flex;
     align-items: center;
@@ -144,4 +151,12 @@ h1 {
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  /* Contact Page */
+iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    overflow: hidden; /* Add this line */
+}
   

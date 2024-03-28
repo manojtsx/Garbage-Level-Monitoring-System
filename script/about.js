@@ -1,33 +1,44 @@
 // About Carousel
 const images = [
     {
-      label: 'San Francisco – Oakland Bay Bridge, United States',
-      imgPath: './public/images/esp32.jpeg',
+      label: 'Manoj Shrestha',
+      semester : '7th sem',
+      imgPath: '../public/Manoj Shrestha.jpg',
     },
     {
-      label: 'Bird',
-      imgPath: 'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      label: 'Usha Gurung',
+      semester : '7th sem',
+      imgPath: '../public/Usha Gurung.jpeg',
     },
     {
-      label: 'Bali, Indonesia',
-      imgPath: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
+      label: 'Pramita Gahatraj',
+      semester : '6th sem',
+      imgPath: '../public/Pramita Gahatraj.png',
     },
     {
-      label: 'Goč, Serbia',
-      imgPath: 'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      label: 'Prabin Ale',
+      semester : '3rd sem',
+      imgPath: '../public/Prabin Ale.png',
     },
+    {
+      label: 'Manjib Kumar Batas',
+      semester : '1st sem',
+      imgPath: '../public/Manjib Kumar Batas.png',
+    }
   ];
   
   let activeStep = 0;
   const maxSteps = images.length;
   
   const imageLabel = document.getElementById('imageLabel');
+  const imageDesc = document.getElementById('imageDesc');
   const imageView = document.getElementById('imageView');
   const backButton = document.getElementById('backButton');
   const nextButton = document.getElementById('nextButton');
   
   function updateUI() {
     imageLabel.innerText = images[activeStep].label;
+    imageDesc.innerText = images[activeStep].semester;
     imageView.innerHTML = `<img src="${images[activeStep].imgPath}" alt="${images[activeStep].label}">`;
   
     backButton.disabled = activeStep === 0;
