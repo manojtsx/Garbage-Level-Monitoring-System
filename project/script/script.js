@@ -1,13 +1,11 @@
-
 setInterval(()=>{
     fetch(
         "https://blynk.cloud/external/api/getAll?token=-Suu9pGlY3Kw9uNTWdM726riQP9Ww_jn"
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           const garbageLevel = data.v0
-            ? (((15 - data.v0) * 100) / 15).toFixed(2)
+            ? (((28 - data.v0) * 100) / 28).toFixed(2)
             : "N/A";
           if (garbageLevel > 100) {
             document.getElementById(
@@ -18,6 +16,11 @@ setInterval(()=>{
               "garbageLevel"
             ).innerText = `Garbage Level: 0 %`;
           } else {
+            if(garbageLevel > 80){
+              document.getElementById("garbageLevel").style.backgroundColor = "red";
+            }else{
+              document.getElementById("garbageLevel").style.backgroundColor = "white";
+            }
             document.getElementById(
               "garbageLevel"
             ).innerText = `Garbage Level: ${garbageLevel} %`;

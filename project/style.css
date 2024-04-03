@@ -73,11 +73,8 @@ h1 {
     transition: all 0.3s ease;
 }
 
-.garbage-level:hover {
-    background-color: #4CAF50;
-    color: #fff;
-    cursor: pointer;
-}
+
+
 .btn {
     width: 90%;
     border: none;
