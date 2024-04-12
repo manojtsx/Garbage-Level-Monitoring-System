@@ -1,42 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garbage Level Monitoring System</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-   
-    <header class="logos">
-        <img src="../public/nagarpalika_logo.png" alt="Nagarpalika Logo">
-        <img src="../public/college_logo.png" alt="College Logo" class="college-logo">
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-        <h1>Garbarge Level Detector</h1>
-        <div class="garbage-level" id="garbageLevel">Loading...</div>
-    <div>
-    </div>
-    <br><br>
-    <h3>Here is the Arduino code of the system</h3>
-<pre>
-    <code>
-        #define BLYNK_TEMPLATE_ID "TMPL6u4PUkawN"
+#define BLYNK_TEMPLATE_ID "TMPL6u4PUkawN"
 #define BLYNK_TEMPLATE_NAME "CLEV"
 #define BLYNK_AUTH_TOKEN "-***************"
 #define BLYNK_PRINT Serial
-#include < Wire.h>
-#include < ESP8266WiFi.h>
-#include < LiquidCrystal_I2C.h>
-#include < BlynkSimpleEsp8266.h>
+#include <Wire.h>
+#include <ESP8266WiFi.h>
+#include <LiquidCrystal_I2C.h>
+#include <BlynkSimpleEsp8266.h>
 
 
 #define trigPin 14
@@ -105,14 +74,3 @@ void loop()
   Blynk.run();
   timer.run();
 }
-    </code>
-</pre>
-
-<h3>Here is a picture of our team</h3>
-<img src="../public/datadreamers-team.jpeg" class="team-photo"/>
-    <footer>
-        <p>&copy; 2024 Garbage Level Monitoring System</p>
-    </footer>
-    <script src="script/script.js"></script>
-</body>
-</html>

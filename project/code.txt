@@ -5,19 +5,24 @@
 
 #include <ESP32Servo.h>
 #include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 #include<BlynkSimpleEsp32.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Set the LCD address to 0x27 for a 16 chars and 2 line display
 
 #define TRIG_PIN_1 14 // Trig pin of first ultrasonic sensor
 #define ECHO_PIN_1 12 // Echo pin of first ultrasonic sensor
 
 #define TRIG_PIN_2 5 // Trig pin of second ultrasonic sensor
-#define ECHO_PIN_2 4 //  Echo pin of  second ultrasonic sensor
+#define ECHO_PIN_2 4 //  Echo pin of second ultrasonic sensor
 
 #define MOTOR_PIN 2 // GPIO pin connected to the motor
+#define PWM_FREQUENCY 1000 // PWM frequency in Hz
+
+#define BUZZ_PIN 13
 
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "Infinix HOT 10 Play";
-char pass[] = "manoj1234";
+char ssid[] = "RM_FLAPPY";
+char pass[] = "infinixhot10play";
 
 BlynkTimer timer;
 Servo myServo;
@@ -38,7 +43,7 @@ long readD1(){
   Serial.println(" cm");
   delay(20);
   Blynk.virtualWrite(V0, distance_1);
-  return (28-distance_1)*28/100;
+  return (15-distance_1)*15/100;
 }
 long readD2(){
 // Read distance from second ultrasonic sensor
@@ -66,6 +71,7 @@ void setup() {
   pinMode(TRIG_PIN_2, OUTPUT);
   pinMode(ECHO_PIN_2, INPUT);
   pinMode(MOTOR_PIN, OUTPUT); // Set the motor pin as an output
+  pinMode(BUZZ_PIN, OUTPUT);
   myServo.attach(MOTOR_PIN);
   myServo.write(0); //in angle
 
@@ -73,17 +79,57 @@ void setup() {
 
   timer.setInterval(100L, readD1);
   timer.setInterval(100L, readD2);
+
+
+  // To find the address of LCD screen
+  // Serial.println ("I2C scanner. Scanning ...");
+  // byte count = 0;
+  // // 0x27 0x3F
+  // Wire.begin();
+  // for (byte i = 8; i < 120; i++)
+  // {
+  //   Wire.beginTransmission (i);
+  //   if (Wire.endTransmission () == 0)
+  //     {
+  //     Serial.print ("Found address: ");
+  //     Serial.print (i, DEC);
+  //     Serial.print (" (0x");
+  //     Serial.print (i, HEX);
+  //     Serial.println (")");
+  //     count++;
+  //     delay (1);
+  //     }
+  // }
+  // Serial.println ("Done.");
+  // Serial.print ("Found ");
+  // Serial.print (count, DEC);
+  // Serial.println (" device(s).");
+
+  // lcd.init();                       // Initialize the LCD
+  // lcd.backlight();                  // Turn on the backlight
+  // lcd.clear();                      // Clear the LCD screen
 }
 
 void loop() {
  if(readD2() < 20){
     myServo.write(180);
-    delay(5000);
  }else{
     myServo.write(0);
  }
 
  Blynk.run();
  timer.run();
- delay(1000);
+  
+  // Print estimated angle of rotation
+
+
+  //  lcd.setCursor(0, 0);               // Set the cursor to the first column and first row
+  // lcd.print("    INOVATRIX   ");     // Print some text
+  // lcd.setCursor(0,1);
+  // lcd.print(counter);
+  // counter = counter + 1;
+  // Serial.println("Working");
+  delay(500);   
+
+  // delay(5000); // Pause for 1 second
 }
